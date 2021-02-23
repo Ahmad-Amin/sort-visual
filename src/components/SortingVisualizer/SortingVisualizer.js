@@ -34,7 +34,7 @@ class SortingVisualizer extends Component{
                 const tempHeight = barOneStyle.height;
                 barOneStyle.height = barTwoStyle.height;
                 barTwoStyle.height = tempHeight;
-            }, i*10);
+            }, i*5);
 
         }
 
