@@ -13,7 +13,7 @@ class SortingVisualizer extends Component{
     }
     resetArray(){
         const arrayGiven=[];
-        for (let i = 0; i < 150; i++) {
+        for (let i = 0; i < 500; i++) {
             arrayGiven.push(randomIntFromInterval(5,730));
         }    
         this.setState({arrayToSort: arrayGiven});
@@ -21,20 +21,9 @@ class SortingVisualizer extends Component{
 
 
     BubbleSort(){
-        const arrayToTest=[10,9,11,6,15,2];
         const animations = SortingAlgos.bubbleSort(this.state.arrayToSort);
-        // console.log(animations);
-        const arrayBars = document.getElementsByClassName('arrayBar');
-        
-        // const newAnimations=[];
-        // for(const animation of animations){
-        //     newAnimations.push(animation.compare);
-        //     newAnimations.push(animation.compare);
-        //     newAnimations.push(animation.swap);
-        // }
 
         for(let i = 0; i<animations.length;i++){
-            // console.log(animations[i]);
             const arrayBars = document.getElementsByClassName('arrayBar');
             const [barOneId, barTwoId] = animations[i];
 
