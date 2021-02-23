@@ -13,7 +13,7 @@ class SortingVisualizer extends Component{
     }
     resetArray(){
         const arrayGiven=[];
-        for (let i = 0; i < 500; i++) {
+        for (let i = 0; i < 200; i++) {
             arrayGiven.push(randomIntFromInterval(5,730));
         }    
         this.setState({arrayToSort: arrayGiven});
@@ -22,22 +22,44 @@ class SortingVisualizer extends Component{
 
     BubbleSort(){
         const animations = SortingAlgos.bubbleSort(this.state.arrayToSort);
+        const arrayBars = document.getElementsByClassName('arrayBar');            
 
         for(let i = 0; i<animations.length;i++){
-            const arrayBars = document.getElementsByClassName('arrayBar');
-            const [barOneId, barTwoId] = animations[i];
-
-            const barOneStyle = arrayBars[barOneId].style;
-            const barTwoStyle = arrayBars[barTwoId].style;
 
             setTimeout(()=>{
-                const tempHeight = barOneStyle.height;
-                barOneStyle.height = barTwoStyle.height;
-                barTwoStyle.height = tempHeight;
-            }, i*5);
+                const [barOneId, barTwoId] = animations[i];
+                // const tempHeight = arrayBars[barOneId].style.height;
+
+                const barOneHeight = arrayBars[barOneId].style.height;
+                const barTwoHeight = arrayBars[barTwoId].style.height;
+                
+                arrayBars[barOneId].style.height = barTwoHeight;
+                arrayBars[barTwoId].style.height = barOneHeight;
+
+            }, i*1);
 
         }
 
+    }
+
+    MergeSort(){
+        // const a = [2,4,1,6,8,5,3,7];
+        const animationsMergeSort = SortingAlgos.mergeSort(this.state.arrayToSort);
+        const arrayBars = document.getElementsByClassName('arrayBar'); 
+
+        // console.log(arrayBars);
+        console.log(animationsMergeSort);
+        for(let i = 0; i<animationsMergeSort.length;i++){
+
+            setTimeout(()=>{
+                const [barOneId, newHeight] = animationsMergeSort[i];
+                const barOneStyle = arrayBars[barOneId].style;
+
+                barOneStyle.height = `${newHeight}px`;
+
+            }, i*5);
+
+        }
     }
 
     render(){
@@ -65,6 +87,7 @@ class SortingVisualizer extends Component{
                 </div>
                 <button onClick={()=> this.resetArray()}>Generate New Array</button>
                 <button onClick={()=>this.BubbleSort()}>Bubble Sort</button>
+                <button onClick={()=>this.MergeSort()}>Merge Sort</button>
                 
             </Fragment>
         );
