@@ -18,7 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "sort-visual -d build"
+    "deploy": "sort-visualizer-In-React- -d build"
   },
   "eslintConfig": {
     "extends": [
